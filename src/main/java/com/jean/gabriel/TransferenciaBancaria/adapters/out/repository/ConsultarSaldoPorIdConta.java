@@ -1,6 +1,6 @@
 package com.jean.gabriel.TransferenciaBancaria.adapters.out.repository;
 
-import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity.Conta;
+import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity.ContaEntity;
 import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.exception.ErroAoConsultarSaldoException;
 import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.exception.ErroContaNaoEncontradaException;
 import com.jean.gabriel.TransferenciaBancaria.core.ports.out.ConsultarSaldoPorIdContaAdapterOut;
@@ -10,6 +10,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+
+import static com.jean.gabriel.TransferenciaBancaria.utils.MensagensLogsEnum.*;
 
 @Component
 public class ConsultarSaldoPorIdConta implements ConsultarSaldoPorIdContaAdapterOut {
@@ -24,15 +26,15 @@ public class ConsultarSaldoPorIdConta implements ConsultarSaldoPorIdContaAdapter
     public BigDecimal consultarSaldoPorIdConta(String idConta) {
         var tempoRequisicao = System.currentTimeMillis();
         try {
-            log.info("Iniciando requisicao de consulta de saldo por id conta: {}", idConta);
-            return contaRepository.findById(idConta).map(Conta::getSaldo).orElseThrow(() ->
+            log.info(INICIO_CONSULTA_SALDO.getMsg(), idConta);
+            var conta= contaRepository.findById(idConta).map(ContaEntity::toDomain).orElseThrow(() ->
                     new ErroContaNaoEncontradaException("Conta nao encontrada"));
+            return conta.getSaldo();
         } catch (DataAccessException e) {
-            log.error("Falha ao consultar saldo por id conta: {}", idConta);
+            log.error(ERRO_CONSULTA_SALDO.getMsg(), idConta);
             throw new ErroAoConsultarSaldoException("Erro ao consultar saldo de conta");
         } finally {
-            log.info("Encerrada requisicao de consulta de saldo por id conta: {} - {} ms", idConta,
-                    System.currentTimeMillis() - tempoRequisicao);
+            log.info(FIM_CONSULTA_SALDO.getMsg(), idConta, System.currentTimeMillis() - tempoRequisicao);
         }
     }
 }

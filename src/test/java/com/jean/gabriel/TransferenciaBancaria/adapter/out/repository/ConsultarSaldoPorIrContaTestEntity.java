@@ -2,7 +2,7 @@ package com.jean.gabriel.TransferenciaBancaria.adapter.out.repository;
 
 import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.ConsultarSaldoPorIdConta;
 import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.ContaRepository;
-import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity.Conta;
+import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity.ContaEntity;
 import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.exception.ErroAoConsultarSaldoException;
 import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.exception.ErroContaNaoEncontradaException;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-public class ConsultarSaldoPorIrContaTest {
+public class ConsultarSaldoPorIrContaTestEntity {
 
     @Mock
     ContaRepository contaRepository;
@@ -36,7 +36,7 @@ public class ConsultarSaldoPorIrContaTest {
     void testConsultarSaldoPorIdContaContaSucesso() {
         String idConta = "123";
         BigDecimal saldoEsperado = new BigDecimal("1000.00");
-        var mockConta = new Conta();
+        var mockConta = new ContaEntity();
         ReflectionTestUtils.setField(mockConta, "saldo", new BigDecimal("1000.00"));
         Mockito.when(contaRepository.findById(idConta)).thenReturn(Optional.of(mockConta));
         BigDecimal saldoRetornado = consultarSaldoPorIdConta.consultarSaldoPorIdConta(idConta);

@@ -1,5 +1,6 @@
 package com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity;
 
+import com.jean.gabriel.TransferenciaBancaria.core.domain.Conta;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_conta")
-public class Conta {
+public class ContaEntity {
 
     @Id
     @Column(name = "numeroconta")
@@ -31,5 +32,9 @@ public class Conta {
 
     public BigDecimal getSaldo() {
         return saldo;
+    }
+
+    public Conta toDomain() {
+        return new Conta(numeroConta, idCliente, saldo, ativa, DataCriacaoConta);
     }
 }
