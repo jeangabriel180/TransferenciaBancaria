@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <writeAnnotations>
+      <writeAnnotation name="javax.validation.constraints.DecimalMin" />
+      <writeAnnotation name="javax.validation.constraints.NotBlank" />
+      <writeAnnotation name="javax.validation.constraints.NotNull" />
+    </writeAnnotations>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
