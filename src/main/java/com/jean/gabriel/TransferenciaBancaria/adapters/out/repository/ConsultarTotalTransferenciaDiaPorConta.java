@@ -17,7 +17,7 @@ import static com.jean.gabriel.TransferenciaBancaria.utils.MensagensLogsEnum.*;
 @Component
 public class ConsultarTotalTransferenciaDiaPorConta implements ConsultarTotalTransferenciaDiaPorContaAdapterOut {
     private final TransferenciaRepository transferenciaRepository;
-    private final static Logger log = LoggerFactory.getLogger(ConsultarSaldoPorIdConta.class);
+    private final static Logger log = LoggerFactory.getLogger(ConsultarTotalTransferenciaDiaPorConta.class);
 
     public ConsultarTotalTransferenciaDiaPorConta(TransferenciaRepository transferenciaRepository) {
         this.transferenciaRepository = transferenciaRepository;

@@ -5,5 +5,5 @@ import com.jean.gabriel.TransferenciaBancaria.adapters.in.response.Transferencia
 
 public interface TransferenciaBancariaAdapterIn {
 
-    public TransferenciaBancariaResponse executar(String idConta, TransferenciaBancariaRequest request) throws Exception;
+    public TransferenciaBancariaResponse executar(String idConta, TransferenciaBancariaRequest request);
 }

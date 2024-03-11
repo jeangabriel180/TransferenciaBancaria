@@ -32,11 +32,11 @@ public class BuscarNomeCliente implements BuscarNomeClienteAdapterOut {
             if (cliente != null) {
                 return cliente.nomeCliente();
             } else {
-                throw new ErroAoBuscarNomeClienteException();
+                throw new ErroAoBuscarNomeClienteException("cliente nao encontrado");
             }
         } catch (Exception e) {
             log.error(ERRO_BUSCAR_NOME_CLIENTE.getMsg(), idCliente);
-            throw new ErroAoBuscarNomeClienteException("Erro ao buscar cliente", e);
+            throw new ErroAoBuscarNomeClienteException(e.getMessage());
         } finally {
             log.error(FIM_BUSCAR_NOME_CLIENTE.getMsg(), idCliente);
         }

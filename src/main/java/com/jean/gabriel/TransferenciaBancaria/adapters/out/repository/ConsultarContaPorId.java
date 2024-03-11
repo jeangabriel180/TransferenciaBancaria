@@ -28,7 +28,7 @@ public class ConsultarContaPorId implements ConsultarContaPorIdAdapterOut {
                     new ErroContaNaoEncontradaException("Conta nao encontrada")).toDomain();
         } catch (DataAccessException e) {
             log.error(ERRO_CONSULTA_CONTA.getMsg(), idConta);
-            throw new ErroContaNaoEncontradaException("Erro conta nao encontrada");
+            throw new ErroContaNaoEncontradaException(e.getMessage());
         } finally {
             log.info(FIM_CONSULTA_CONTA.getMsg(), idConta,
                     System.currentTimeMillis() - tempoRequisicao);

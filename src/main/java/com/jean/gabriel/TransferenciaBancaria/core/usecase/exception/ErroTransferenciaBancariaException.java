@@ -6,4 +6,8 @@ public class ErroTransferenciaBancariaException extends RuntimeException{
         super(msg);
     }
 
+    public ErroTransferenciaBancariaException(String msg, String erroMessage) {
+        super(msg);
+    }
+
 }

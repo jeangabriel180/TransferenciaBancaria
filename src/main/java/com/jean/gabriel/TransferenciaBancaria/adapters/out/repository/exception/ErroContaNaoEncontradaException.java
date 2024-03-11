@@ -5,4 +5,7 @@ public class ErroContaNaoEncontradaException extends RuntimeException {
     public ErroContaNaoEncontradaException(String msg) {
         super(msg);
     }
+    public ErroContaNaoEncontradaException() {
+        super();
+    }
 }

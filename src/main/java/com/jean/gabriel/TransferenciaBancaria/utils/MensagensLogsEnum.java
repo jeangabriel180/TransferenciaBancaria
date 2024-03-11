@@ -16,7 +16,11 @@ public enum MensagensLogsEnum {
 
     INICIO_NOTIFICAR_BACEN("Iniciando notificacao de transferencia com o id Conta: {}"),
     FIM_NOTIFICAR_BACEN("Encerrada operação ao notificar transferencia com o id Conta: {}"),
-    ERRO_NOTIFICAR_BACEN("Erro ao notificar bacen com id conta: {}");
+    ERRO_NOTIFICAR_BACEN("Erro ao notificar bacen com id conta: {}"),
+
+    INICIO_TRANSFERENCIA_BANCARIA("Iniciando transferencia bancaria com idConta {}"),
+    FIM_TRANSFERENCIA_BANCARIA("Finalizando transferencia bancaria com idConta {}"),
+    ERRO_TRANSFERENCIA_BANCARIA("Erro ao realizar transferencia com idConta: {}");
 
 
 

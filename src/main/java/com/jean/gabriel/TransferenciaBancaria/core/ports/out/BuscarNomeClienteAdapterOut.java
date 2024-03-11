@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public interface BuscarNomeClienteAdapterOut {
 
-    String buscarNomeCliente(UUID idCliente) throws Exception;
+    String buscarNomeCliente(UUID idCliente);
 
 }
