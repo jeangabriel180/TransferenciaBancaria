@@ -1,10 +1,7 @@
 package com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity;
 
 import com.jean.gabriel.TransferenciaBancaria.core.domain.Conta;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,22 +13,37 @@ public class ContaEntity {
 
     @Id
     @Column(name = "numeroconta")
-    String numeroConta;
+    private String numeroConta;
 
-    @Column(name = "idcliente")
-    UUID idCliente;
+    @Column(name = "idcliente",columnDefinition = "BINARY(16)")
+    private UUID idCliente;
 
     @Column(name = "saldo")
-    BigDecimal saldo;
+    private BigDecimal saldo;
 
     @Column(name = "ativa")
-    Boolean ativa;
+    private Boolean ativa;
 
     @Column(name = "datacriacaoconta")
-    LocalDate DataCriacaoConta;
+    private LocalDate DataCriacaoConta;
+
+    public ContaEntity() {
+    }
+
+    public ContaEntity(String numeroConta, UUID idCliente, BigDecimal saldo, Boolean ativa, LocalDate dataCriacaoConta) {
+        this.numeroConta = numeroConta;
+        this.idCliente = idCliente;
+        this.saldo = saldo;
+        this.ativa = ativa;
+        DataCriacaoConta = dataCriacaoConta;
+    }
 
     public BigDecimal getSaldo() {
         return saldo;
+    }
+
+    public String getNumeroConta() {
+        return numeroConta;
     }
 
     public Conta toDomain() {

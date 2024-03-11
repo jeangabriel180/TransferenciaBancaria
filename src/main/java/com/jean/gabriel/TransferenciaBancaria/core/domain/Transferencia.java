@@ -1,5 +1,8 @@
 package com.jean.gabriel.TransferenciaBancaria.core.domain;
 
+import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity.ContaEntity;
+import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity.TransferenciaEntity;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -8,21 +11,33 @@ public class Transferencia {
     private UUID codigoTransferencia;
     private BigDecimal valorTransferencia;
     private String numeroContaRemetente;
-    private String numeroContaDestinaratio;
+    private String numeroContaDestinatario;
     private LocalDateTime dataHoraTransferencia;
-    private UUID codigoBacen;
 
     public Transferencia(UUID codigoTransferencia, BigDecimal valorTransferencia, String numeroContaRemetente,
-                         String numeroContaDestinaratio, LocalDateTime dataHoraTransferencia, UUID codigoBacen) {
+                         String numeroContaDestinatario, LocalDateTime dataHoraTransferencia) {
         this.codigoTransferencia = codigoTransferencia;
         this.valorTransferencia = valorTransferencia;
         this.numeroContaRemetente = numeroContaRemetente;
-        this.numeroContaDestinaratio = numeroContaDestinaratio;
+        this.numeroContaDestinatario = numeroContaDestinatario;
         this.dataHoraTransferencia = dataHoraTransferencia;
-        this.codigoBacen = codigoBacen;
     }
 
     public BigDecimal getValorTransferencia() {
         return valorTransferencia;
+    }
+
+    public String getNumeroContaRemetente() {
+        return numeroContaRemetente;
+    }
+
+    public TransferenciaEntity toEntity() {
+        return new TransferenciaEntity(
+                this.codigoTransferencia,
+                this.valorTransferencia,
+                new ContaEntity(this.numeroContaRemetente, null, null, null, null),
+                new ContaEntity(this.numeroContaDestinatario, null, null, null, null),
+                this.dataHoraTransferencia
+        );
     }
 }

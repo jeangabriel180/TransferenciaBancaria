@@ -12,31 +12,41 @@ import java.util.UUID;
 public class TransferenciaEntity {
 
     @Id
-    @Column(name = "codigotransferencia")
-    UUID codigoTransferencia;
+    @GeneratedValue
+    @Column(name = "codigotransferencia", columnDefinition = "BINARY(16)")
+    private UUID codigoTransferencia;
 
     @Column(name = "valortransferido")
-    BigDecimal valorTransferencia;
+    private BigDecimal valorTransferencia;
 
     @ManyToOne
     @JoinColumn(name = "numerocontaremetente")
-    ContaEntity numeroContaRemetente;
+    private ContaEntity numeroContaRemetente;
 
     @ManyToOne
     @JoinColumn(name = "numerocontadestinataria")
-    ContaEntity numeroContaDestinataria;
+    private ContaEntity numeroContaDestinataria;
 
     @Column(name = "datahoratransferencia")
-    LocalDateTime dataHoraTransferencia;
-
-    @Column(name = "codigobacen")
-    UUID codigoBacen;
+    private LocalDateTime dataHoraTransferencia;
 
 
-    public Transferencia toDomain() {
-        return new Transferencia(codigoTransferencia, valorTransferencia, numeroContaRemetente.numeroConta,
-                numeroContaDestinataria.numeroConta, dataHoraTransferencia, codigoBacen);
+    public TransferenciaEntity() {
     }
 
+    public TransferenciaEntity(UUID codigoTransferencia, BigDecimal valorTransferencia,
+                               ContaEntity numeroContaRemetente, ContaEntity numeroContaDestinataria,
+                               LocalDateTime dataHoraTransferencia) {
+        this.codigoTransferencia = codigoTransferencia;
+        this.valorTransferencia = valorTransferencia;
+        this.numeroContaRemetente = numeroContaRemetente;
+        this.numeroContaDestinataria = numeroContaDestinataria;
+        this.dataHoraTransferencia = dataHoraTransferencia;
+    }
+
+    public Transferencia toDomain() {
+        return new Transferencia(codigoTransferencia, valorTransferencia, numeroContaRemetente.getNumeroConta(),
+                numeroContaDestinataria.getNumeroConta(), dataHoraTransferencia);
+    }
 
 }

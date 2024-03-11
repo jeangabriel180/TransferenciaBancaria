@@ -5,6 +5,7 @@ import com.jean.gabriel.TransferenciaBancaria.adapters.out.api.response.ClienteR
 import com.jean.gabriel.TransferenciaBancaria.core.ports.out.BuscarNomeClienteAdapterOut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -23,12 +24,17 @@ public class BuscarNomeCliente implements BuscarNomeClienteAdapterOut {
     }
 
     @Override
+    @Cacheable(value = "cacheCliente")
     public String buscarNomeCliente(UUID idCliente) {
         try {
             //Chamada mockada via ferramenta Mockoon
             log.info(INICIO_BUSCAR_NOME_CLIENTE.getMsg(), idCliente);
             ClienteResponse cliente = webClient.get().uri("http://localhost:3000/cadastro/" +
-                    idCliente).retrieve().bodyToMono(ClienteResponse.class).block();
+                            idCliente).retrieve().bodyToMono(ClienteResponse.class)
+                    .onErrorResume(throwable -> {
+                        throw new ErroAoBuscarNomeClienteException("Falha ao recuperar nome cliente");
+                    })
+                    .block();
             if (cliente != null) {
                 return cliente.nomeCliente();
             } else {

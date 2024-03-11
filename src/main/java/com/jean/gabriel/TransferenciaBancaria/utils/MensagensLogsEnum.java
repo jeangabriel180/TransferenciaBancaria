@@ -20,14 +20,20 @@ public enum MensagensLogsEnum {
 
     INICIO_TRANSFERENCIA_BANCARIA("Iniciando transferencia bancaria com idConta {}"),
     FIM_TRANSFERENCIA_BANCARIA("Finalizando transferencia bancaria com idConta {}"),
-    ERRO_TRANSFERENCIA_BANCARIA("Erro ao realizar transferencia com idConta: {}");
+    ERRO_TRANSFERENCIA_BANCARIA("Erro ao realizar transferencia com idConta: {}"),
 
+    INICIO_SALVAR_SALDO_CONTA("Iniciando gravacao de saldo com idConta:  {}"),
+    FIM_SALVAR_SALDO_CONTA("Finalizando gravacao de saldo com idConta:  {}"),
+    ERRO_SALVAR_SALDO_CONTA("Erro gravacao de saldo com idConta: {}"),
 
+    INICIO_SALVAR_TRANSFERENCIA("Iniciando gravacao de transferencia com idConta:  {}"),
+    FIM_SALVAR_TRANSFERENCIA("Finalizando gravacao de transferencia com idConta:  {}"),
+    ERRO_SALVAR_TRANSFERENCIA("Erro gravacao de transferencia com idConta: {}");
 
 
     private String msg;
 
-    MensagensLogsEnum(String msg){
+    MensagensLogsEnum(String msg) {
         this.msg = msg;
     }
 

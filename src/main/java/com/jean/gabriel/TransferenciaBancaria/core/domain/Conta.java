@@ -1,5 +1,7 @@
 package com.jean.gabriel.TransferenciaBancaria.core.domain;
 
+import com.jean.gabriel.TransferenciaBancaria.adapters.out.repository.entity.ContaEntity;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -49,6 +51,16 @@ public class Conta implements Serializable {
         if (valor.compareTo(this.saldo) > 0) {
             throw new Exception("Saldo Insuficiente");
         }
-        this.saldo = saldo.min(valor);
+        this.saldo = saldo.subtract(valor);
+    }
+
+    public ContaEntity toEntity() {
+        return new ContaEntity(
+                this.numeroConta,
+                this.idCLiente,
+                this.saldo,
+                this.ativa,
+                this.dataCriacaoConta
+        );
     }
 }
