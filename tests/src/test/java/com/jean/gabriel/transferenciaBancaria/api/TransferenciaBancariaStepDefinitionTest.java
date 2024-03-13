@@ -76,7 +76,7 @@ public class TransferenciaBancariaStepDefinitionTest {
     @Entao("o status da resposta deve ser {int} o corpo da resposta deve conter o id de registro bacen")
     public void oStatusDaRespostaDeveSerOCorpoDaRespostaDeveConterOIdDeRegistroBacen(int statusCode) {
         assertEquals(statusCode, this.responseBacen.statusCode());
-        assertDoesNotThrow(() -> UUID.fromString(responseBacen.body()));
+        assertDoesNotThrow(() -> UUID.fromString(responseBacen.body().replace("\"", "")));
     }
 
 }
