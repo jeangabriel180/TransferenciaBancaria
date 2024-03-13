@@ -49,13 +49,15 @@ public class TransfenciaBancariaUseCase implements TransferenciaBancariaAdapterI
             log.info(INICIO_TRANSFERENCIA_BANCARIA.getMsg(), idConta);
             var contaRemetente = consultarContaRemetentePorIdAdapterOut.consultarContaPorId(idConta);
             var totalTransferenciaDia = consultarTotalTransferenciaDiaPorContaAdapterOut.consultarTotalTransferenciaDia(idConta);
-            var nomeCliente = buscarNomeClienteAdapterOut.buscarNomeCliente(contaRemetente.getIdCLiente());
-            var contaDestinatario = consultarContaDestinatarioPorIdAdapterOut.consultarContaPorId(request.getIdContaDestinatario());
+
+            if (totalTransferenciaDia.compareTo(new BigDecimal("1000.0")) > 0)
+                throw new ErroTransferenciaBancariaException("Limite diario atingido");
 
             if (!contaRemetente.getAtiva())
                 throw new ErroTransferenciaBancariaException("Conta inativa");
-            if (totalTransferenciaDia.compareTo(new BigDecimal("1000.0")) > 0)
-                throw new ErroTransferenciaBancariaException("Limite diario atingido");
+
+            var nomeCliente = buscarNomeClienteAdapterOut.buscarNomeCliente(contaRemetente.getIdCLiente());
+            var contaDestinatario = consultarContaDestinatarioPorIdAdapterOut.consultarContaPorId(request.getIdContaDestinatario());
 
             var novaTransferencia = new Transferencia(
                     null,

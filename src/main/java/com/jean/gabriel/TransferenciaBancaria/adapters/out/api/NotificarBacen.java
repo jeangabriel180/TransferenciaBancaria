@@ -19,6 +19,7 @@ import reactor.util.retry.RetryBackoffSpec;
 import java.time.Duration;
 import java.util.UUID;
 
+import static com.jean.gabriel.TransferenciaBancaria.utils.ConstantsRoutes.ROTA_BACEN;
 import static com.jean.gabriel.TransferenciaBancaria.utils.MensagensLogsEnum.*;
 
 @Component
@@ -42,7 +43,7 @@ public class NotificarBacen implements NotificarBacenAdapterOut {
                             ((WebClientResponseException) error).getStatusCode() == HttpStatus.TOO_MANY_REQUESTS)
                     .onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> new ErroAoNotificarBacenException("Erro ao notificar o Bacen"));
 
-            return webClient.post().uri("http://localhost:3001/bacen")
+            return webClient.post().uri(ROTA_BACEN)
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .body(BodyInserters.fromValue(new BacenRequest(idConta, request.getIdContaDestinatario(), request.getValorTransferencia())))
                     .retrieve()

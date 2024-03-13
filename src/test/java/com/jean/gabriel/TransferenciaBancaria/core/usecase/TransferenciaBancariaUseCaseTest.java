@@ -102,11 +102,9 @@ public class TransferenciaBancariaUseCaseTest {
     void deveLancarExcecaoAoVerificarLimiteTransferenciaAtingido() {
         TransferenciaBancariaRequest request = new TransferenciaBancariaRequest("03601205409", new BigDecimal("100.0"));
         Conta contaRemetente = gerarContaRemetente();
-        Conta contaDestinatario = gerarContaDestinatario();
         BigDecimal totalTransferenciaDia = new BigDecimal("20000.0");
 
         when(consultarContaRemetentePorIdAdapterOut.consultarContaPorId("69853214659")).thenReturn(contaRemetente);
-        when(consultarContaDestinatarioPorIdAdapterOut.consultarContaPorId(request.getIdContaDestinatario())).thenReturn(contaDestinatario);
         when(consultarTotalTransferenciaDiaPorContaAdapterOut.consultarTotalTransferenciaDia(contaRemetente.getNumeroConta())).thenReturn(totalTransferenciaDia);
 
         assertThrows(ErroTransferenciaBancariaException.class, () ->

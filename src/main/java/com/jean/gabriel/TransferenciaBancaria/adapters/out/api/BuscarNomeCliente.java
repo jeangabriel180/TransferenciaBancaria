@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.UUID;
 
+import static com.jean.gabriel.TransferenciaBancaria.utils.ConstantsRoutes.ROTA_SALDO;
 import static com.jean.gabriel.TransferenciaBancaria.utils.MensagensLogsEnum.*;
 
 @Component
@@ -29,7 +30,7 @@ public class BuscarNomeCliente implements BuscarNomeClienteAdapterOut {
         try {
             //Chamada mockada via ferramenta Mockoon
             log.info(INICIO_BUSCAR_NOME_CLIENTE.getMsg(), idCliente);
-            ClienteResponse cliente = webClient.get().uri("http://localhost:3000/cadastro/" +
+            ClienteResponse cliente = webClient.get().uri(ROTA_SALDO +
                             idCliente).retrieve().bodyToMono(ClienteResponse.class)
                     .onErrorResume(throwable -> {
                         throw new ErroAoBuscarNomeClienteException("Falha ao recuperar nome cliente");
