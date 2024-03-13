@@ -52,7 +52,7 @@ public class NotificarBacen implements NotificarBacenAdapterOut {
 
         } catch (Exception e) {
             log.error(ERRO_NOTIFICAR_BACEN.getMsg(), idConta);
-            throw new ErroAoNotificarBacenException("Erro ao buscar cliente");
+            throw new ErroAoNotificarBacenException("Erro notificar bacen");
         } finally {
             log.error(FIM_NOTIFICAR_BACEN.getMsg(), idConta);
         }
