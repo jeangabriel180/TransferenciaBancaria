@@ -9,10 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jean.gabriel</groupId>
-    <artifactId>TransferenciaBancaria</artifactId>
+    <artifactId>transferenciaBancaria-testes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>TransferenciaBancaria</name>
-    <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -60,9 +59,25 @@
             <version>3.0.4</version>
         </dependency>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.15.0</version>
+        </dependency>
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.0.0</version>
+            <version>7.15.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jean.gabriel</groupId>
+            <artifactId>TransferenciaBancaria</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

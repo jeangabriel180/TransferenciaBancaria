@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-public class ConsultarSaldoPorIrContaTestEntity {
+public class ConsultarSaldoPorIrContaTest {
 
     @Mock
     ContaRepository contaRepository;
