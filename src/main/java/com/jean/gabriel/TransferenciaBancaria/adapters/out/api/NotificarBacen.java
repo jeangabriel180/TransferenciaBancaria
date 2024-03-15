@@ -35,7 +35,6 @@ public class NotificarBacen implements NotificarBacenAdapterOut {
     @Override
     public UUID notificarBacen(String idConta, TransferenciaBancariaRequest request) {
         try {
-            //Chamada mockada via ferramenta Mockoon
             log.info(INICIO_NOTIFICAR_BACEN.getMsg(), idConta);
 
             RetryBackoffSpec retrySpec = Retry.backoff(4, Duration.ofSeconds(3))

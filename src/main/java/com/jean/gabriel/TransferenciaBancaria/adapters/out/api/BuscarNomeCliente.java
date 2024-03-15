@@ -28,7 +28,6 @@ public class BuscarNomeCliente implements BuscarNomeClienteAdapterOut {
     @Cacheable(value = "cacheCliente")
     public String buscarNomeCliente(UUID idCliente) {
         try {
-            //Chamada mockada via ferramenta Mockoon
             log.info(INICIO_BUSCAR_NOME_CLIENTE.getMsg(), idCliente);
             ClienteResponse cliente = webClient.get().uri(ROTA_SALDO +
                             idCliente).retrieve().bodyToMono(ClienteResponse.class)

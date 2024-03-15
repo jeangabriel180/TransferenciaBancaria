@@ -1,0 +1,1 @@
+{"openapi":"3.0.0","info":{"title":"Demo API","version":"1.0.0"},"servers":[{"url":"http://localhost:3000/"}],"paths":{"/cadastro/{id_cliente}":{"get":{"description":"","responses":{"200":{"description":"","content":{"application/json":{"example":"{}"}},"headers":{}}},"parameters":[{"name":"id_cliente","in":"path","schema":{"type":"string"},"required":true}]}}}}
